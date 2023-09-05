@@ -1,14 +1,29 @@
 <?php
 class User {
     public $name;
+    public $email;
 
-    public function sayHello() {
-        return $this->name. " says Hello";
+    public function welcomeMessage() {
+        return "Have a good working day";
     }
+}
+
+class Admin extends User {
+    public $level;
 }
 
 $user = new User();
 $user->name = "Joskin";
-echo $user->name;
+$user->email = "joskin@example.com";
+echo $user->name . " " . $user->email;
+
+
+
+$admin = new Admin();
+$admin->name = "Man";
+$admin->email = "men@example.com";
+$admin->level = "Super Level";
+echo $admin->name . " " . $admin->email.  " " . $admin->level;
 echo "<hr>";
-echo $user->sayHello();
+echo $admin->welcomeMessage();
+
