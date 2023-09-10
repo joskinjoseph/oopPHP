@@ -3,22 +3,15 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-class User
-{
-    public $name = "Joseph";
-    public $age;
+//PDO........ PHP Data Object
 
-    final public function printName($name){
-        return "My name is " . $name;
-    }
+require_once 'includes/config.php';
+require_once 'includes/database.php';
+?>
 
-}
+<?php
 
-class Manager extends User {
-    public $name = "Joskin";
+$object = new Database;
+echo $object->connect(); 
 
-    
-}
-
-$manager = new Manager();
-echo $manager->printName("JOSKIN");
+?>
