@@ -3,19 +3,39 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-abstract class Manager {
-    abstract public function showProject($project);
-}
+class User
+{
+    private $name;
+    private $age;
 
-class Employee extends Manager{
-    public function showProject($project = "Apple") {
-        return "I am working on " . $project;
+    public function __construct($name, $age)
+    {
+        $this->name = $name;
+        $this->age = $age;
     }
 
-    public function startProject($project) {
-        return $this->showProject($project);
+    public function __toString()
+    {
+        return "Name: " . $this->name . "<br> Age: " . $this->age;
     }
+
+    public function setName($name) {
+        $this->name = $name;
+    }
+
+    public function getName(){
+        echo $this->name;
+    }
+
+    public function setAge($age) {
+        $this->name = $age;
+    }
+
+    public function getAge(){
+        echo $this->age;
+    }
+
 }
 
-$employee = new Employee();
-echo $employee->showProject();
+$user = new User("Joskin", 25);
+echo $user;
