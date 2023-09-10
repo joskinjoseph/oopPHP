@@ -3,24 +3,19 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-class User
-{
-    public static $nextId = 0;
-    public $myId;
-
-    public static function printId(){
-        return "User id  is " . self::$nextId;
-    }
-  
+abstract class Manager {
+    abstract public function showProject($project);
 }
 
-$user = new User();
-$user->myId = 10;
-echo $user->myId;
-echo "<hr>";
+class Employee extends Manager{
+    public function showProject($project = "Apple") {
+        return "I am working on " . $project;
+    }
 
-echo User::$nextId;
+    public function startProject($project) {
+        return $this->showProject($project);
+    }
+}
 
-echo "<hr>";
-
-echo User::printId();
+$employee = new Employee();
+echo $employee->showProject();
