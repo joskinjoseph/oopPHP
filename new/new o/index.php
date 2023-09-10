@@ -5,32 +5,22 @@ ini_set('display_errors', 1);
 
 class User
 {
-    private $name;
-    private $age;
+    public static $nextId = 0;
+    public $myId;
 
-    public function __construct($name, $age) {
-        $this->name = $name;
-        $this->age = $age;
+    public static function printId(){
+        return "User id  is " . self::$nextId;
     }
-
-    public function __get($property)
-    {
-        if (property_exists($this, $property)) {
-            return $this->$property;
-        }
-    }
-
-    public function __set($property, $value) {
-      if (property_exists($this, $property)){
-        $this->$property = $value;
-      }
-      return $this;
-     }
-
-   
+  
 }
 
-$user = new User("Dary", 24);
-$user->__set('name', 'David');
-echo $user->__get('name');
+$user = new User();
+$user->myId = 10;
+echo $user->myId;
 echo "<hr>";
+
+echo User::$nextId;
+
+echo "<hr>";
+
+echo User::printId();
