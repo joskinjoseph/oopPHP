@@ -3,7 +3,8 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-class User {
+class User
+{
     private $name;
     private $age;
 
@@ -12,43 +13,24 @@ class User {
         $this->age = $age;
     }
 
-    public function getName() {
-       return $this->name;
+    public function __get($property)
+    {
+        if (property_exists($this, $property)) {
+            return $this->$property;
+        }
     }
 
-    public function setName($name) {
-       $this->name = $name;
-     }
-
-    public function getAge() {
-        return $this->age;
-     }
- 
-     public function setAge($age) {
-        $this->age = $age;
+    public function __set($property, $value) {
+      if (property_exists($this, $property)){
+        $this->$property = $value;
       }
+      return $this;
+     }
 
+   
 }
 
-
 $user = new User("Dary", 24);
-echo $user->getName();
+$user->__set('name', 'David');
+echo $user->__get('name');
 echo "<hr>";
-echo $user->getAge();
-
-
-
-// $user->name = "Joskin";
-// $user->email = "joskin@example.com";
-// echo $user->name . " " . $user->email;
-
-
-
-// $admin = new Admin();
-// $admin->name = "Man";
-// $admin->email = "men@example.com";
-// $admin->level = "Super Level";
-// echo $admin->name . " " . $admin->email.  " " . $admin->level;
-// echo "<hr>";
-// echo $admin->welcomeMessage();
-
